@@ -1,7 +1,10 @@
 package com.jwb5.eatWhat.service.impl;
 
+import com.jwb5.eatWhat.Util.HttpConnectionUtil;
 import com.jwb5.eatWhat.service.LoginService;
+import org.springframework.stereotype.Service;
 
+@Service
 public class LoginServiceImpl implements LoginService {
 
 
@@ -11,10 +14,15 @@ public class LoginServiceImpl implements LoginService {
     private static final String LOGIN_URL ="https://api.weixin.qq.com/sns/jscode2session?appid="+APPID+"&secret="+SECRET+"&js_code=";
 
 
-    @Override
-    public String getSessionUrl(String code) {
+    private String getSessionUrl(String code) {
         StringBuilder sb = new StringBuilder(LOGIN_URL);
         sb.append(code).append(GRANT_TYPE);
         return sb.toString();
+    }
+
+    @Override
+    public String code2Session(String code) {
+        String url = getSessionUrl(code);
+        return HttpConnectionUtil.get(url);
     }
 }
