@@ -1,60 +1,33 @@
 package com.jwb5.eatWhat.model;
 
+import java.util.List;
+
 public class User {
-    private String openid;
-    private String session_key;
-    private String unionid;
-    private Number errcode;
-    private String errmsg;
+    private String userId;
+    private String userName;
+    private double maxScore;
 
-    public String getOpenid() {
-        return openid;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setOpenid(String openid) {
-        this.openid = openid;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
-    public String getSession_key() {
-        return session_key;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setSession_key(String session_key) {
-        this.session_key = session_key;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public String getUnionid() {
-        return unionid;
+    public double getMaxScore() {
+        return maxScore;
     }
 
-    public void setUnionid(String unionid) {
-        this.unionid = unionid;
-    }
-
-    public Number getErrcode() {
-        return errcode;
-    }
-
-    public void setErrcode(Number errcode) {
-        this.errcode = errcode;
-    }
-
-    public String getErrmsg() {
-        return errmsg;
-    }
-
-    public void setErrmsg(String errmsg) {
-        this.errmsg = errmsg;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "openid='" + openid + '\'' +
-                ", session_key='" + session_key + '\'' +
-                ", unionid='" + unionid + '\'' +
-                ", errcode=" + errcode +
-                ", errmsg='" + errmsg + '\'' +
-                '}';
+    public void setMaxScore(double maxScore) {
+        this.maxScore = maxScore;
     }
 }

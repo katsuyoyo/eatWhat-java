@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
+import java.util.Set;
+
 @Service
 public class RedisService {
 
@@ -97,6 +99,29 @@ public class RedisService {
             jedis=jedisPool.getResource();
             String realKey = prefix.getPrefix()+key;
             return jedis.del(realKey);
+        }finally {
+            return2Pool(jedis);
+        }
+    }
+
+
+    public <T> Long zAdd(KeyPrefix prefix,String key,double score,T value){
+        Jedis jedis = null;
+        try {
+            jedis=jedisPool.getResource();
+            String realKey = prefix.getPrefix()+key;
+            return jedis.zadd(realKey,score,String2ObjectUtil.bean2String(value));
+        }finally {
+            return2Pool(jedis);
+        }
+    }
+
+    public Set<String> zRange(KeyPrefix prefix, String key, long start, long end){
+        Jedis jedis = null;
+        try {
+            jedis=jedisPool.getResource();
+            String realKey = prefix.getPrefix()+key;
+            return jedis.zrange(realKey,start,end);
         }finally {
             return2Pool(jedis);
         }

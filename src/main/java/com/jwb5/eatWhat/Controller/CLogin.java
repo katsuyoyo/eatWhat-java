@@ -15,11 +15,5 @@ public class CLogin {
     @Autowired
     LoginService loginService;
 
-    @RequestMapping("login")
-    public Result login(String code){
-        String result = loginService.code2Session(code);
-        User user = String2ObjectUtil.string2Bean(result,User.class);
-        //TODO
-        return null;
-    }
+
 }
