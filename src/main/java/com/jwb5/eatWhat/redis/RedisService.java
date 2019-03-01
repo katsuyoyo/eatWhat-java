@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.Tuple;
 
 import java.util.Set;
 
@@ -116,12 +117,23 @@ public class RedisService {
         }
     }
 
-    public Set<String> zRange(KeyPrefix prefix, String key, long start, long end){
+    public <T> Long zDel(KeyPrefix prefix,String key,T value){
         Jedis jedis = null;
         try {
             jedis=jedisPool.getResource();
             String realKey = prefix.getPrefix()+key;
-            return jedis.zrange(realKey,start,end);
+            return jedis.zrem(realKey,String2ObjectUtil.bean2String(value));
+        }finally {
+            return2Pool(jedis);
+        }
+    }
+
+    public Set<Tuple> zRange(KeyPrefix prefix, String key, long start, long end){
+        Jedis jedis = null;
+        try {
+            jedis=jedisPool.getResource();
+            String realKey = prefix.getPrefix()+key;
+            return jedis.zrangeWithScores(realKey,start,end);
         }finally {
             return2Pool(jedis);
         }

@@ -14,8 +14,19 @@
 	<name>eatWhat</name>
 	<description>Demo project for Spring Boot</description>
 
+	<packaging>jar</packaging>
+
 	<properties>
-		<java.version>1.8</java.version>
+
+			<java.version>1.8</java.version>
+
+			<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+			<maven.compiler.source>1.8</maven.compiler.source>
+
+			<maven.compiler.target>1.8</maven.compiler.target>
+
+
 	</properties>
 
 	<dependencies>
@@ -36,22 +47,22 @@
 			<version>1.5.12.RELEASE</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.mybatis.spring.boot</groupId>
-			<artifactId>mybatis-spring-boot-starter</artifactId>
-			<version>1.3.1</version>
-		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>org.mybatis.spring.boot</groupId>-->
+			<!--<artifactId>mybatis-spring-boot-starter</artifactId>-->
+			<!--<version>1.3.1</version>-->
+		<!--</dependency>-->
 
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>druid</artifactId>
-			<version>RELEASE</version>
-		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>com.alibaba</groupId>-->
+			<!--<artifactId>druid</artifactId>-->
+			<!--<version>RELEASE</version>-->
+		<!--</dependency>-->
 
 		<dependency>
 			<groupId>redis.clients</groupId>
@@ -115,10 +126,38 @@
 	<build>
 		<plugins>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<fork>true</fork>
+					<mainClass>com.jwb5.eatWhat.EatWhatApplication</mainClass>
+					<layout>ZIP</layout>
+
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+						<!-- 分离出代码包
+						<configuration>
+							<classifier>exec</classifier>
+						</configuration>
+						 -->
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
+
 
 </project>

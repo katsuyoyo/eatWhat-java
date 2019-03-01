@@ -1,14 +1,47 @@
 package com.jwb5.eatWhat.msg;
 
-public class Result {
+public class Result<T> {
+    private boolean isSuccess = true;
     private String msg;
     private int code;
+    private T data;
 
-    public static Result SUCCESS = new Result("success",0);
+    private Result() {
+    }
 
-    public Result(String msg, int code) {
+    private Result(T data) {
+        this.data = data;
+    }
+
+    private Result(boolean isSuccess, int code, String msg) {
+        this.isSuccess = isSuccess;
         this.msg = msg;
         this.code = code;
+    }
+
+    private Result(boolean isSuccess, int code, String msg, T data) {
+        this.isSuccess = isSuccess;
+        this.msg = msg;
+        this.code = code;
+        this.data = data;
+    }
+
+    public static Result success(){
+        return new Result();
+    }
+
+    public static <T> Result success(T data){
+        return new Result(data);
+    }
+    public static <T> Result error(int code, String msg,T data){
+        return new Result(false,code,msg,data);
+    }
+    public static <T> Result error(int code, String msg){
+        return new Result(false,code,msg);
+    }
+
+    public boolean isSuccess() {
+        return isSuccess;
     }
 
     public String getMsg() {
@@ -19,11 +52,7 @@ public class Result {
         return code;
     }
 
-    @Override
-    public String toString() {
-        return "Result{" +
-                "msg='" + msg + '\'' +
-                ", code=" + code +
-                '}';
+    public T getData() {
+        return data;
     }
 }
