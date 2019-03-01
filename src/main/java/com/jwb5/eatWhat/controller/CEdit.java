@@ -1,13 +1,10 @@
-package com.jwb5.eatWhat.Controller;
+package com.jwb5.eatWhat.controller;
 
 
-import com.jwb5.eatWhat.msg.Result;
 import com.jwb5.eatWhat.redis.RedisService;
-import com.jwb5.eatWhat.redis.UserKey;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @ControllerAdvice
 @RequestMapping("/eat/edit/*")
@@ -24,8 +21,8 @@ public class CEdit {
 //    public Result listFood(){
 //        Result result = redisService.zRange(UserKey.USER_KEY,);
 //    }
-    @RequestMapping("add")
-    public void addFood(String food){
-
-    }
+//    @RequestMapping("add")
+//    public void addFood(String food){
+//
+//    }
 }

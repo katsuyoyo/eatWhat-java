@@ -1,8 +1,5 @@
-package com.jwb5.eatWhat.Controller;
+package com.jwb5.eatWhat.controller;
 
-import com.jwb5.eatWhat.Util.String2ObjectUtil;
-import com.jwb5.eatWhat.model.User;
-import com.jwb5.eatWhat.msg.Result;
 import com.jwb5.eatWhat.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ControllerAdvice;
