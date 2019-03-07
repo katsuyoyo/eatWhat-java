@@ -31,7 +31,14 @@ public class CTest {
             Tuple tuple= iterator.next();
             result.put(tuple.getScore(),tuple.getElement());
         }
-        return Result.success(result);
+        List<Map<String, String>> jsonresult = new ArrayList<Map<String, String>>();
+        for(Double key : result.keySet()){
+            Map<String, String> map = new HashMap<>();
+            map.put("foodId",String.valueOf(key));
+            map.put("foodName",result.get(key));
+            jsonresult.add(map);
+        }
+        return Result.success(jsonresult);
     }
     @RequestMapping(value = "add",method = RequestMethod.POST)
     @ResponseBody
